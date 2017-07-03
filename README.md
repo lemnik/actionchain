@@ -13,6 +13,8 @@ onBackground((name) -> {
 .exec("Jason");
 ```
 
+Building this project may require Android Studio 3.0 or higher.
+
 # Usage Patterns
 
 In case you don't have Java 8 (or lambdas of some other form) enabled for your Android project,
