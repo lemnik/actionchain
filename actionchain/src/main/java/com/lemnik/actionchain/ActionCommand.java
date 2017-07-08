@@ -159,6 +159,7 @@ public abstract class ActionCommand<P, R> {
             this.command = chain.next();
         }
 
+        @SuppressWarnings("unchecked")
         void onBackground() {
             try {
                 // our current "value" is the commands parameter
@@ -172,6 +173,7 @@ public abstract class ActionCommand<P, R> {
             }
         }
 
+        @SuppressWarnings("unchecked")
         void onForeground() {
             try {
                 command.onForeground(value);
@@ -222,6 +224,7 @@ public abstract class ActionCommand<P, R> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private static class ComposableActionCommand extends ActionCommand {
 
         Function background;
@@ -308,19 +311,19 @@ public abstract class ActionCommand<P, R> {
             return false;
         }
 
-        static ComposableActionCommand forBackground(final Function background) {
+        static <R, P> ActionCommand<R, P> forBackground(final Function background) {
             final ComposableActionCommand command = new ComposableActionCommand();
             command.background = background;
             return command;
         }
 
-        static ComposableActionCommand forForeground(final Consumer foreground) {
+        static <R, P> ActionCommand<R, P> forForeground(final Consumer foreground) {
             final ComposableActionCommand command = new ComposableActionCommand();
             command.foreground = foreground;
             return command;
         }
 
-        static ComposableActionCommand forError(final Consumer error) {
+        static <R, P> ActionCommand<R, P> forError(final Consumer error) {
             final ComposableActionCommand command = new ComposableActionCommand();
             command.error = error;
             return command;
@@ -336,9 +339,14 @@ public abstract class ActionCommand<P, R> {
             }
         }
 
+        @SuppressWarnings("unchecked")
+        private <R> Chain<P, R> this0() {
+            return (Chain<P, R>) this;
+        }
+
         public <R> Chain<P, R> then(final ActionCommand<V, R> next) {
             if (next == null) {
-                return (Chain<P, R>) this;
+                return this0();
             }
 
             if (!chain.isEmpty() && next instanceof ComposableActionCommand) {
@@ -347,12 +355,12 @@ public abstract class ActionCommand<P, R> {
                         && ((ComposableActionCommand) lastCommand).compose((ComposableActionCommand) next)) {
 
                     // we composed the next command into the existing tail of the chain
-                    return (Chain<P, R>) this;
+                    return this0();
                 }
             }
 
             chain.add(next);
-            return (Chain<P, R>) this;
+            return this0();
         }
 
         public void exec() {
