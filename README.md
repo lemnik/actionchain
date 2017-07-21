@@ -9,8 +9,22 @@ ActionChain makes bouncing between the main thread and background threads much:
 
 and allows for much more code-reuse. It may help you in other ways, in which case: please share!
 
-ActionCommand with lambda's can be used exactly like this:
+# Usage
+
+Add to your project dependencies:
+
 ```
+compile 'com.lemnik:action-chain:0.1.0'
+```
+
+ActionCommand with lambda's can be used exactly like this:
+
+```
+import static com.lemnik.actionchain.ActionCommand.onBackground;
+import static com.lemnik.actionchain.ActionCommand.onForeground;
+
+// ...
+
 onBackground((name) -> "Hello <b>" + name + "</b>")
 .then(onBackground((msg) -> Html.fromHtml(msg)))
 .then(onForeground((msg) -> {
@@ -88,8 +102,3 @@ public void onClick(View saveAndClose) {
         .exec(userEditor.build());
 }
 ```
-
-# Building
-
-This project is still pre-release, and building it is either a command-line `gradlew assemble` effort,
-or will require Android Studio 3.0.
