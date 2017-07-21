@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import java.util.concurrent.CountDownLatch;
 
 import static com.lemnik.actionchain.ActionCommand.onBackground;
-import static com.lemnik.actionchain.ActionCommand.onError;
 import static com.lemnik.actionchain.ActionCommand.onForeground;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

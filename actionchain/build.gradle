@@ -8,7 +8,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "0.1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -25,6 +25,30 @@ android {
     }
 }
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'action-chain'
+
+    publishedGroupId = 'com.lemnik'
+    libraryName = 'ActionChain'
+    artifact = 'action-chain'
+
+    libraryDescription = 'Android Thread-Hopping Command-Chains'
+
+    siteUrl = 'https://github.com/lemnik/actionchain'
+    gitUrl = 'https://github.com/lemnik/actionchain.git'
+
+    libraryVersion = '0.1.0'
+
+    developerId = 'lemnik'
+    developerName = 'Jason Morris'
+    developerEmail = 'dev@lemnik.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://mit-license.org/'
+    allLicenses = ["MIT"]
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -32,3 +56,6 @@ dependencies {
     })
     testImplementation 'junit:junit:4.12'
 }
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
