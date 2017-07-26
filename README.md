@@ -14,7 +14,7 @@ and allows for much more code-reuse. It may help you in other ways, in which cas
 Add to your project dependencies:
 
 ```
-compile 'com.lemnik:action-chain:0.1.0'
+compile 'com.lemnik:action-chain:0.1.1'
 ```
 
 ActionCommand with lambda's can be used exactly like this:
