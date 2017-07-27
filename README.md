@@ -11,6 +11,17 @@ and allows for much more code-reuse. It may help you in other ways, in which cas
 
 # Usage
 
+Add the repository to your project `build.gradle`:
+
+```
+repositories {
+    jcenter()
+    maven { url 'https://maven.google.com' }
+    
+    maven { url "https://dl.bintray.com/lemnik/maven/" }
+}
+```
+
 Add to your project dependencies:
 
 ```
